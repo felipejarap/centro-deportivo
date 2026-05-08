@@ -1,0 +1,4 @@
+package duoc.cl.ms_classes.dto;
+
+public class ClassResponseDto {
+}

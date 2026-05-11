@@ -2,6 +2,7 @@ package duoc.cl.ms_classes.controller;
 
 import duoc.cl.ms_classes.dto.ClasseRequestDto;
 import duoc.cl.ms_classes.dto.ClasseResponseDto;
+import duoc.cl.ms_classes.dto.TypeClassesResponseDto;
 import duoc.cl.ms_classes.service.ClasseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,15 @@ public class ClasseController {
         }
         return ResponseEntity.ok(updateClasse);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ClasseResponseDto> delete(@PathVariable Long id) {
+        boolean delClasse = service.deleteById(id);
+        if (delClasse) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
 }

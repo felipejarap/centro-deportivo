@@ -1,6 +1,6 @@
 #  Microservicio ms-classes
 
-Este microservicio gestiona el ciclo de vida completo de las clases académicas y sus categorías. Implementa un **CRUD completo** y sigue una arquitectura de capas profesional.
+Este microservicio gestiona el ciclo de vida completo de las clases deportivas y sus categorías. Implementa un **CRUD completo** y sigue una arquitectura de capas profesional.
 
 ##  Stack Tecnológico
 *   **Lenguaje:** Java 21 (LTS)

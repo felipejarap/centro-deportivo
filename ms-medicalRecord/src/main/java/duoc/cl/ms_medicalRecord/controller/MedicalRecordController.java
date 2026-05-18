@@ -23,7 +23,7 @@ public class MedicalRecordController {
     }
 
     @GetMapping("/by-user/{userId}")
-    public ResponseEntity<List<MedicalRecordResponseDto>> findByPatientId(@PathVariable Long userId) throws Exception {
+    public ResponseEntity<List<MedicalRecordResponseDto>> findByUserId(@PathVariable Long userId) throws Exception {
 
         try {
             return ResponseEntity.ok(service.findByUserId(userId));

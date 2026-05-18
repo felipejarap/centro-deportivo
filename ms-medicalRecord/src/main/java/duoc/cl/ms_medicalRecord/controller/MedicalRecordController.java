@@ -22,6 +22,16 @@ public class MedicalRecordController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicalRecordResponseDto> findById(@PathVariable Long id) {
+        MedicalRecordResponseDto medicalRecord = service.findById(id);
+
+        if (medicalRecord == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(medicalRecord);
+    }
+
     @GetMapping("/by-user/{userId}")
     public ResponseEntity<List<MedicalRecordResponseDto>> findByUserId(@PathVariable Long userId) throws Exception {
 

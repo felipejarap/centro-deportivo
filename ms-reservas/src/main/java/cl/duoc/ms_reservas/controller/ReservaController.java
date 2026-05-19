@@ -50,4 +50,31 @@ public class ReservaController {
         if (service.delete(id)) return ResponseEntity.noContent().build();
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/by-user/{user-id}")
+    public ResponseEntity<List<ReservaResponseDto>> findByUserId(@PathVariable Long UserId)throws Exception{
+        try {
+            return ResponseEntity.ok(service.findByUserId(UserId));
+        } catch (Exception e) {
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/by-entrenador/{entrenador-id}")
+    public ResponseEntity<List<ReservaResponseDto>> findByEntrenadorId(@PathVariable Long EntrenadorId)throws Exception{
+        try {
+            return ResponseEntity.ok(service.findByEntrenadorId(EntrenadorId));
+        } catch (Exception e) {
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/by-classe/{classe-id}")
+    public ResponseEntity<List<ReservaResponseDto>> findByClasseId(@PathVariable Long ClasseId)throws Exception{
+        try {
+            return ResponseEntity.ok(service.findByClasseId(ClasseId));
+        } catch (Exception e) {
+
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

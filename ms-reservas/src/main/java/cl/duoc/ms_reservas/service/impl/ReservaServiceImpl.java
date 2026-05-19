@@ -98,4 +98,46 @@ public class ReservaServiceImpl implements ReservaService {
         return false;
     }
 
+    @Override
+    public List<ReservaResponseDto> finByUserId(Long UserId) throws Exception {
+        try{
+            UserResponseDto userFind = usuarioClient.findById(UserId);
+                if(userFind == null){
+                    return null;
+                }
+            return repository.findByUserId(UserId).stream().map(this::toDto).toList();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public List<ReservaResponseDto> findByEntrenadorId(Long EntrenadorId)throws Exception {
+        try{
+            EntrenadorResponseDto entrenadorFind = entrenadorClient.findById(EntrenadorId);
+            if(entrenadorFind == null){
+                return null;
+            }
+            return repository.findByEntrenadorId(EntrenadorId).stream().map(this::toDto).toList();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+
+    }
+
+    @Override
+    public List<ReservaResponseDto> findByClasseId(Long ClasseId) throws Exception {
+        try{
+            ClasseResponseDto classeFind = claseClient.findById(ClasseId);
+            if(classeFind == null){
+                return null;
+            }
+            return repository.findByClasseId(ClasseId).stream().map(this::toDto).toList();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

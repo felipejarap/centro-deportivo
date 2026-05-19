@@ -2,6 +2,7 @@ package cl.duoc.ms_reservas.service;
 
 import cl.duoc.ms_reservas.dto.ReservaRequestDto;
 import cl.duoc.ms_reservas.dto.ReservaResponseDto;
+import cl.duoc.ms_reservas.model.Reserva;
 
 import java.util.List;
 
@@ -12,4 +13,7 @@ public interface ReservaService {
     ReservaResponseDto create(ReservaRequestDto reserva);
     ReservaResponseDto update(Long id, ReservaRequestDto reserva);
     boolean delete(Long id);
+    List<ReservaResponseDto> findByUserId(Long UserId) throws Exception;
+    List<ReservaResponseDto>findByEntrenadorId(Long EntrenadorId) throws Exception;
+    List<ReservaResponseDto>findByClasseId(Long ClasseId) throws Exception;
 }

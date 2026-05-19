@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @AllArgsConstructor@NoArgsConstructor
+@Table(name = "user")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -35,8 +39,8 @@ public class User {
     @Column(name ="phone")
     private String phone;
 
-    @ManyToOne
-    @JoinColumn(name = "id_type_User",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_type_user", referencedColumnName = "id")
     private TypeUser typeUser;
 
 

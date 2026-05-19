@@ -11,8 +11,8 @@ public interface UserService {
 
     List<UserResponseDto> findAll();
     UserResponseDto findById(Long id);
+    List<UserResponseDto> findByTypeUserId(Long typeUserId);
     UserResponseDto create(UserRequestDto user);
     UserResponseDto update(Long id, UserRequestDto user);
     boolean delete(Long id);
-
 }

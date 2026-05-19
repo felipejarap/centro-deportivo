@@ -1,6 +1,5 @@
 package cl.duoc.MS_Usuarios.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TypeUserResponseDto {
-    Long id;
 
-    String name;
+    private Long id;
+    private String name;
+
+    /** Nombre del rol Spring Security derivado del tipo de usuario. */
+    public String getRoleName() {
+        return name != null ? "ROLE_" + name.toUpperCase() : null;
+    }
 }

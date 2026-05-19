@@ -3,12 +3,15 @@ package cl.duoc.MS_Usuarios.service.impl;
 import cl.duoc.MS_Usuarios.dto.TypeUserResponseDto;
 import cl.duoc.MS_Usuarios.dto.UserRequestDto;
 import cl.duoc.MS_Usuarios.dto.UserResponseDto;
+import cl.duoc.MS_Usuarios.model.TypeUser;
 import cl.duoc.MS_Usuarios.model.User;
 import cl.duoc.MS_Usuarios.repository.TypeUserRepository;
 import cl.duoc.MS_Usuarios.repository.UserRepository;
 import cl.duoc.MS_Usuarios.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,6 +22,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final TypeUserRepository typeUserRepository;
 
+    private TypeUser resolveTypeUser(Long typeUserId) {
+        return typeUserRepository.findById(typeUserId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "Tipo de usuario no encontrado: " + typeUserId
+                ));
+    }
 
     private User toEntity(UserRequestDto dto) {
         User user = new User();
@@ -27,14 +37,13 @@ public class UserServiceImpl implements UserService {
         user.setApmaterno(dto.getApmaterno());
         user.setEmail(dto.getEmail());
         user.setPhone(dto.getPhone());
-        if(dto.getTypeUserId() != null){ typeUserRepository.findById(dto.getTypeUserId())
-                .ifPresent(user::setTypeUser);
-        }
+        user.setTypeUser(resolveTypeUser(dto.getTypeUserId()));
         return user;
     }
-    private UserResponseDto toDto(User entity){
-        TypeUserResponseDto  typeDto=null;
-        if(entity.getTypeUser()!=null){
+
+    private UserResponseDto toDto(User entity) {
+        TypeUserResponseDto typeDto = null;
+        if (entity.getTypeUser() != null) {
             typeDto = new TypeUserResponseDto(
                     entity.getTypeUser().getId(),
                     entity.getTypeUser().getName()
@@ -51,28 +60,36 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-
     @Override
     public List<UserResponseDto> findAll() {
-        return repository.findAll().stream().map(this::toDto).toList();
-
+        return repository.findAllWithTypeUser().stream().map(this::toDto).toList();
     }
 
     @Override
     public UserResponseDto findById(Long id) {
+        return repository.findByIdWithTypeUser(id).map(this::toDto).orElse(null);
+    }
 
-        return repository.findById(id).map(this::toDto).orElse(null);
+    @Override
+    public List<UserResponseDto> findByTypeUserId(Long typeUserId) {
+        if (!typeUserRepository.existsById(typeUserId)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Tipo de usuario no encontrado: " + typeUserId
+            );
+        }
+        return repository.findByTypeUser_Id(typeUserId).stream().map(this::toDto).toList();
     }
 
     @Override
     public UserResponseDto create(UserRequestDto user) {
-       User entity = toEntity(user);
-       return toDto(repository.save(entity));
+        User entity = toEntity(user);
+        return toDto(repository.save(entity));
     }
 
     @Override
     public UserResponseDto update(Long id, UserRequestDto user) {
-        if(repository.existsById(id)){
+        if (repository.existsById(id)) {
             User entity = toEntity(user);
             entity.setIdUser(id);
             return toDto(repository.save(entity));
@@ -82,7 +99,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(Long id) {
-        if(repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
         }

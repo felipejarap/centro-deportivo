@@ -3,6 +3,7 @@ package cl.duoc.MS_Usuarios.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class UserRequestDto {
     @Email(message = "Debe proporcionar un formato de email valido")
     private String email;
     private String phone;
+    @NotNull(message = "El tipo de usuario es requerido")
     private Long typeUserId;
 
 

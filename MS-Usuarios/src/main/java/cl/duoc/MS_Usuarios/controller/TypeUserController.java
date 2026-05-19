@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/type-User")
+@RequestMapping("/api/v1/type-users")
 public class TypeUserController {
         private final TypeUserService service;
 

@@ -25,6 +25,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/by-type/{typeUserId}")
+    public ResponseEntity<List<UserResponseDto>> findByTypeUserId(@PathVariable Long typeUserId) {
+        return ResponseEntity.ok(service.findByTypeUserId(typeUserId));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> findById(@PathVariable Long id){
         UserResponseDto user = service.findById(id);

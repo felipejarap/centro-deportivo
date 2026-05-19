@@ -6,9 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter@Setter@AllArgsConstructor@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TypeUserRequestDto {
-    Long id;
-    @NotBlank(message = "el nombre no puede estar ne blanco")
-    String name;
+
+    @NotBlank(message = "El nombre no puede estar en blanco")
+    private String name;
 }

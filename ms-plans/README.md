@@ -30,6 +30,7 @@ Basado en arquitectura limpia:
 - **`service`**: Lógica de negocio e implementaciones.
 - **`repository`**: Abstracción de base de datos con JPA.
 - **`dto`**: Transferencia de datos segura (Request/Response).
+- **`model`**: Entidad de negocio que mapea a la base de datos (`Plans`).
 
 
 ##  Robustez

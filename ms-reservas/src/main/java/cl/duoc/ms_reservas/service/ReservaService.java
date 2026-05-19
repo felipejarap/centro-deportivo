@@ -1,0 +1,15 @@
+package cl.duoc.ms_reservas.service;
+
+import cl.duoc.ms_reservas.dto.ReservaRequestDto;
+import cl.duoc.ms_reservas.dto.ReservaResponseDto;
+
+import java.util.List;
+
+public interface ReservaService {
+
+    List<ReservaResponseDto> findAll();
+    ReservaResponseDto findById(Long id);
+    ReservaResponseDto create(ReservaRequestDto reserva);
+    ReservaResponseDto update(Long id, ReservaRequestDto reserva);
+    boolean delete(Long id);
+}

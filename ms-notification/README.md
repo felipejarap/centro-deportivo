@@ -1,4 +1,4 @@
-#  Microservicio ms-entrenadores
+#  Microservicio ms-notification
 
 Este microservicio gestiona el ciclo de vida completa de las notificaciones. Implementa un **CRUD completo** y sigue una arquitectura de capas profesional.
 

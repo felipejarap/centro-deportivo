@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-@Getter@Setter@AllArgsConstructor@NoArgsConstructor
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class ClasseResponseDto {
 
     private Long id;

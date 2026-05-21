@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReservaRespository extends JpaRepository<Reserva,Long> {
-    List<Reserva> findByUserId(Long userId);
-    List<Reserva>findByEntrenadorId(Long entrenadorId);
-    List<Reserva>findByClasseId(Long classeId);
+public interface ReservaRespository extends JpaRepository<Reserva, Long> {
+    List<Reserva> findByIdUsuario(Long idUsuario);
+    List<Reserva> findByIdEntrenador(Long idEntrenador);
+    List<Reserva> findByIdClase(Long idClase);
 }

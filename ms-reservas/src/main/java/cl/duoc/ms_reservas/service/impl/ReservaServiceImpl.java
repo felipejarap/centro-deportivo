@@ -145,7 +145,7 @@ public class ReservaServiceImpl implements ReservaService {
                 log.warn("Usuario no encontrado en ms-usuarios: idUsuario={}", userId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByUserId(userId)
+            List<ReservaResponseDto> result = repository.findByIdUsuario(userId)
                     .stream().map(this::toDto).toList();
             log.info("Reservas encontradas para usuario: idUsuario={}, total={}", userId, result.size());
             return result;
@@ -164,7 +164,7 @@ public class ReservaServiceImpl implements ReservaService {
                 log.warn("Entrenador no encontrado en ms-entrenadores: idEntrenador={}", entrenadorId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByEntrenadorId(entrenadorId)
+            List<ReservaResponseDto> result = repository.findByIdEntrenador(entrenadorId)
                     .stream().map(this::toDto).toList();
             log.info("Reservas encontradas para entrenador: idEntrenador={}, total={}", entrenadorId, result.size());
             return result;
@@ -183,7 +183,7 @@ public class ReservaServiceImpl implements ReservaService {
                 log.warn("Clase no encontrada en ms-classes: idClase={}", classeId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByClasseId(classeId)
+            List<ReservaResponseDto> result = repository.findByIdClase(classeId)
                     .stream().map(this::toDto).toList();
             log.info("Reservas encontradas para clase: idClase={}, total={}", classeId, result.size());
             return result;

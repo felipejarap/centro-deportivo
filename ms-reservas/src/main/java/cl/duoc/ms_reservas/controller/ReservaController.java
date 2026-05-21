@@ -75,46 +75,46 @@ public class ReservaController {
     }
 
     @GetMapping("/by-user/{user-id}")
-    public ResponseEntity<List<ReservaResponseDto>> findByUserId(@PathVariable Long UserId) throws Exception {
-        log.info("GET /api/v1/reservas/by-user/{} - Buscando reservas por usuario", UserId);
+    public ResponseEntity<List<ReservaResponseDto>> findByUserId(@PathVariable Long userId) throws Exception {
+        log.info("GET /api/v1/reservas/by-user/{} - Buscando reservas por usuario", userId);
         try {
-            List<ReservaResponseDto> result = service.findByUserId(UserId);
-            log.info("GET /api/v1/reservas/by-user/{} - Resultado: {} registros", UserId,
+            List<ReservaResponseDto> result = service.findByUserId(userId);
+            log.info("GET /api/v1/reservas/by-user/{} - Resultado: {} registros", userId,
                     result != null ? result.size() : 0);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             log.warn("GET /api/v1/reservas/by-user/{} - Usuario no encontrado, respondiendo 404: {}",
-                    UserId, e.getMessage());
+                    userId, e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/by-entrenador/{entrenador-id}")
-    public ResponseEntity<List<ReservaResponseDto>> findByEntrenadorId(@PathVariable Long EntrenadorId) throws Exception {
-        log.info("GET /api/v1/reservas/by-entrenador/{} - Buscando reservas por entrenador", EntrenadorId);
+    public ResponseEntity<List<ReservaResponseDto>> findByEntrenadorId(@PathVariable Long entrenadorId) throws Exception {
+        log.info("GET /api/v1/reservas/by-entrenador/{} - Buscando reservas por entrenador", entrenadorId);
         try {
-            List<ReservaResponseDto> result = service.findByEntrenadorId(EntrenadorId);
-            log.info("GET /api/v1/reservas/by-entrenador/{} - Resultado: {} registros", EntrenadorId,
+            List<ReservaResponseDto> result = service.findByEntrenadorId(entrenadorId);
+            log.info("GET /api/v1/reservas/by-entrenador/{} - Resultado: {} registros", entrenadorId,
                     result != null ? result.size() : 0);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             log.warn("GET /api/v1/reservas/by-entrenador/{} - Entrenador no encontrado, respondiendo 404: {}",
-                    EntrenadorId, e.getMessage());
+                    entrenadorId, e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/by-classe/{classe-id}")
-    public ResponseEntity<List<ReservaResponseDto>> findByClasseId(@PathVariable Long ClasseId) throws Exception {
-        log.info("GET /api/v1/reservas/by-classe/{} - Buscando reservas por clase", ClasseId);
+    public ResponseEntity<List<ReservaResponseDto>> findByClasseId(@PathVariable Long classeId) throws Exception {
+        log.info("GET /api/v1/reservas/by-classe/{} - Buscando reservas por clase", classeId);
         try {
-            List<ReservaResponseDto> result = service.findByClasseId(ClasseId);
-            log.info("GET /api/v1/reservas/by-classe/{} - Resultado: {} registros", ClasseId,
+            List<ReservaResponseDto> result = service.findByClasseId(classeId);
+            log.info("GET /api/v1/reservas/by-classe/{} - Resultado: {} registros", classeId,
                     result != null ? result.size() : 0);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             log.warn("GET /api/v1/reservas/by-classe/{} - Clase no encontrada, respondiendo 404: {}",
-                    ClasseId, e.getMessage());
+                    classeId, e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }

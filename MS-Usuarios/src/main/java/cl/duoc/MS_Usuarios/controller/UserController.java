@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/Users")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
 

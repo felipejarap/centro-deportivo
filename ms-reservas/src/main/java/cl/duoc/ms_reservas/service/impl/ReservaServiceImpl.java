@@ -137,58 +137,58 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public List<ReservaResponseDto> findByUserId(Long UserId) throws Exception {
-        log.info("Buscando reservas por usuario: idUsuario={}", UserId);
+    public List<ReservaResponseDto> findByUserId(Long userId) throws Exception {
+        log.info("Buscando reservas por usuario: idUsuario={}", userId);
         try {
-            UserResponseDto userFind = usuarioClient.findById(UserId);
+            UserResponseDto userFind = usuarioClient.findById(userId);
             if (userFind == null) {
-                log.warn("Usuario no encontrado en ms-usuarios: idUsuario={}", UserId);
+                log.warn("Usuario no encontrado en ms-usuarios: idUsuario={}", userId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByUserId(UserId)
+            List<ReservaResponseDto> result = repository.findByUserId(userId)
                     .stream().map(this::toDto).toList();
-            log.info("Reservas encontradas para usuario: idUsuario={}, total={}", UserId, result.size());
+            log.info("Reservas encontradas para usuario: idUsuario={}, total={}", userId, result.size());
             return result;
         } catch (Exception e) {
-            log.error("Error al buscar reservas por usuario: idUsuario={}, motivo={}", UserId, e.getMessage());
+            log.error("Error al buscar reservas por usuario: idUsuario={}, motivo={}", userId, e.getMessage());
             throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public List<ReservaResponseDto> findByEntrenadorId(Long EntrenadorId) throws Exception {
-        log.info("Buscando reservas por entrenador: idEntrenador={}", EntrenadorId);
+    public List<ReservaResponseDto> findByEntrenadorId(Long entrenadorId) throws Exception {
+        log.info("Buscando reservas por entrenador: idEntrenador={}", entrenadorId);
         try {
-            EntrenadorResponseDto entrenadorFind = entrenadorClient.findById(EntrenadorId);
+            EntrenadorResponseDto entrenadorFind = entrenadorClient.findById(entrenadorId);
             if (entrenadorFind == null) {
-                log.warn("Entrenador no encontrado en ms-entrenadores: idEntrenador={}", EntrenadorId);
+                log.warn("Entrenador no encontrado en ms-entrenadores: idEntrenador={}", entrenadorId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByEntrenadorId(EntrenadorId)
+            List<ReservaResponseDto> result = repository.findByEntrenadorId(entrenadorId)
                     .stream().map(this::toDto).toList();
-            log.info("Reservas encontradas para entrenador: idEntrenador={}, total={}", EntrenadorId, result.size());
+            log.info("Reservas encontradas para entrenador: idEntrenador={}, total={}", entrenadorId, result.size());
             return result;
         } catch (Exception e) {
-            log.error("Error al buscar reservas por entrenador: idEntrenador={}, motivo={}", EntrenadorId, e.getMessage());
+            log.error("Error al buscar reservas por entrenador: idEntrenador={}, motivo={}", entrenadorId, e.getMessage());
             throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public List<ReservaResponseDto> findByClasseId(Long ClasseId) throws Exception {
-        log.info("Buscando reservas por clase: idClase={}", ClasseId);
+    public List<ReservaResponseDto> findByClasseId(Long classeId) throws Exception {
+        log.info("Buscando reservas por clase: idClase={}", classeId);
         try {
-            ClasseResponseDto classeFind = claseClient.findById(ClasseId);
+            ClasseResponseDto classeFind = claseClient.findById(classeId);
             if (classeFind == null) {
-                log.warn("Clase no encontrada en ms-classes: idClase={}", ClasseId);
+                log.warn("Clase no encontrada en ms-classes: idClase={}", classeId);
                 return null;
             }
-            List<ReservaResponseDto> result = repository.findByClasseId(ClasseId)
+            List<ReservaResponseDto> result = repository.findByClasseId(classeId)
                     .stream().map(this::toDto).toList();
-            log.info("Reservas encontradas para clase: idClase={}, total={}", ClasseId, result.size());
+            log.info("Reservas encontradas para clase: idClase={}, total={}", classeId, result.size());
             return result;
         } catch (Exception e) {
-            log.error("Error al buscar reservas por clase: idClase={}, motivo={}", ClasseId, e.getMessage());
+            log.error("Error al buscar reservas por clase: idClase={}, motivo={}", classeId, e.getMessage());
             throw new Exception(e.getMessage());
         }
     }

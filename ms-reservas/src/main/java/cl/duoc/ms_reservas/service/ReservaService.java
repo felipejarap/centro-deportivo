@@ -13,7 +13,7 @@ public interface ReservaService {
     ReservaResponseDto create(ReservaRequestDto reserva);
     ReservaResponseDto update(Long id, ReservaRequestDto reserva);
     boolean delete(Long id);
-    List<ReservaResponseDto> findByUserId(Long UserId) throws Exception;
-    List<ReservaResponseDto>findByEntrenadorId(Long EntrenadorId) throws Exception;
-    List<ReservaResponseDto>findByClasseId(Long ClasseId) throws Exception;
+    List<ReservaResponseDto> findByUserId(Long userId) throws Exception;
+    List<ReservaResponseDto>findByEntrenadorId(Long entrenadorId) throws Exception;
+    List<ReservaResponseDto>findByClasseId(Long classeId) throws Exception;
 }

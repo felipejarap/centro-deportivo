@@ -1,5 +1,6 @@
 package cl.duoc.ms.asistencia.controller.handler;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,6 +14,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExeptionHandler {
 
+    private static final Logger log = LoggerFactory.getLogger(ExeptionHandler.class);
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationErrors(
             MethodArgumentNotValidException ex) {
@@ -22,15 +25,8 @@ public class ExeptionHandler {
             String message = error.getDefaultMessage();
             errors.put(field, message);
         });
+        log.warn("Validación fallida en request: campos con error={}", errors.keySet());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleGenericError(Exception ex) {
-        Map<String, String> error = new HashMap<>();
-        error.put("error", "Error interno del servidor");
-        error.put("detalle", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -39,10 +35,20 @@ public class ExeptionHandler {
         response.put("error", "Validación fallida");
         response.put("detalle", ex.getMessage());
 
-        // Si el detalle contiene un 404 de Feign, mandamos NOT_FOUND (404), si no BAD_REQUEST (400)
         HttpStatus status = ex.getMessage().contains("404") ? HttpStatus.NOT_FOUND : HttpStatus.BAD_REQUEST;
+        log.warn("IllegalArgumentException capturada: status={}, detalle={}", status.value(), ex.getMessage());
 
         return new ResponseEntity<>(response, status);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> handleGenericError(Exception ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "Error interno del servidor");
+        error.put("detalle", ex.getMessage());
+        log.error("Error interno no controlado: tipo={}, mensaje={}",
+                ex.getClass().getSimpleName(), ex.getMessage(), ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
 }

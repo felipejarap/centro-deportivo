@@ -15,9 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/assistances")
 @RequiredArgsConstructor
-public class AsistenciaController {
+public class AssistanceController {
 
-    private static final Logger log = LoggerFactory.getLogger(AsistenciaController.class);
+    private static final Logger log = LoggerFactory.getLogger(AssistanceController.class);
 
     private final AssistanceService service;
 

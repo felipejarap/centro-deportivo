@@ -11,17 +11,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AsistenciaRequestDto {
+public class AssistanceRequestDto {
 
     @NotNull(message = "El id de usuario es requerido")
-    private Long idUsuario;
+    private Long idUser;
 
     @NotNull(message = "El id de classe es requerido")
     private Long idClasse;
 
     @NotBlank(message = "La hora de llegada no puede estar vacía")
-    private String horaLlegada;
+    private String arrivalTime;
 
     @NotNull(message = "El campo asistio es requerido")
-    private Boolean asistio;
+    private Boolean assist;
 }

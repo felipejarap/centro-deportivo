@@ -12,21 +12,21 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Asistencia {
+public class Assistance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_asistencia")
-    private Long idAsistencia;
+    @Column(name = "id_assistance")
+    private Long idAssistance;
 
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    @Column(name = "id_user", nullable = false)
+    private Long idUser;
 
     @Column(name = "id_classe", nullable = false)
     private Long idClasse;
 
-    @Column(name = "hora_llegada", nullable = false)
-    private String horaLlegada;
+    @Column(name = "arrival_time", nullable = false)
+    private String arrivalTime;
 
-    @Column(name = "asistio", nullable = false)
-    private Boolean asistio;
+    @Column(name = "assist", nullable = false)
+    private Boolean assist;
 }

@@ -1,5 +1,6 @@
 package cl.duoc.ms.asistencia.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,14 +10,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AsistenciaResponseDto {
+public class AssistanceResponseDto {
 
-    private Long idAsistencia;
-    private Long idUsuario;
+    private Long idAssistance;
+    private Long idUser;
     private Long idClasse;
-    private String horaLlegada;
-    private Boolean asistio;
+    private String arrivalTime;
+    private Boolean assist;
 
-    private UserResponseDto usuario;
+    private UserResponseDto user;
     private ClasseResponseDto classe;
 }

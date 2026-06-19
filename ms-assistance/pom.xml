@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cl.duoc</groupId>
-	<artifactId>ms.asistencia</artifactId>
+	<artifactId>ms-assistance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>

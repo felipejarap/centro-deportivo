@@ -25,11 +25,11 @@ public class User {
     @Column(unique = true,nullable = false)
     private String username;
 
-    @Column(name = "appaterno")
-    private String appaterno;
+    @Column(name = "paternal_surname")
+    private String paternalSurname;
 
-    @Column(name ="apmaterno")
-    private String apmaterno;
+    @Column(name ="maternal_surname")
+    private String maternalSurname;
 
     @Email
     @NotBlank

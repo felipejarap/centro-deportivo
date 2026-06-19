@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
     private User toEntity(UserRequestDto dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
-        user.setAppaterno(dto.getAppaterno());
-        user.setApmaterno(dto.getApmaterno());
+        user.setPaternalSurname(dto.getPaternalSurname());
+        user.setMaternalSurname(dto.getMaternalSurname());
         user.setEmail(dto.getEmail());
         user.setPhone(dto.getPhone());
         user.setTypeUser(resolveTypeUser(dto.getTypeUserId()));
@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserService {
         return new UserResponseDto(
                 entity.getIdUser(),
                 entity.getUsername(),
-                entity.getAppaterno(),
-                entity.getApmaterno(),
+                entity.getPaternalSurname(),
+                entity.getMaternalSurname(),
                 entity.getEmail(),
                 entity.getPhone(),
                 typeDto

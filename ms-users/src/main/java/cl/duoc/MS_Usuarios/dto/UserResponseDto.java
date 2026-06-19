@@ -14,8 +14,8 @@ public class UserResponseDto {
     private Long id;
     @NotNull
     private String username;
-    private String appaterno;
-    private String apmaterno;
+    private String paternalSurname;
+    private String maternalSurname;
     @Email
     private String email;
     private String phone;

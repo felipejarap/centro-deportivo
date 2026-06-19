@@ -18,9 +18,9 @@ public class UserRequestDto {
     private String username;
 
     @NotBlank(message = "El apellido paterno es requerido")
-    private String appaterno;
+    private String paternalSurname;
     @NotBlank(message = "El apellido materno es requerido")
-    private String apmaterno;
+    private String maternalSurname;
 
     @NotBlank(message = "El email no puede estar vacio")
     @Email(message = "Debe proporcionar un formato de email valido")

@@ -1,15 +1,13 @@
 package cl.duoc.ms_reservas.service.api;
 
 
-import cl.duoc.ms_reservas.dto.UserResponseDto;
+import cl.duoc.ms_reservas.dto.CoachResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "ms-usuarios", url = "http://localhost:8081/api/v1/Users")
-public interface UsuarioClient {
+@FeignClient(name = "ms-coaches", url = "http://localhost:8085/api/v1/coaches")
+public interface CoachClient {
     @GetMapping("/{id}")
-    UserResponseDto findById(@PathVariable Long id);
-
-
+    CoachResponseDto findById(@PathVariable Long id);
 }

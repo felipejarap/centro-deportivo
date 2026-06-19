@@ -11,20 +11,20 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReservaRequestDto {
+public class ReservationRequestDto {
 
     @NotNull(message = "El id de usuario es requerido")
-    private Long idUsuario;
+    private Long idUser;
 
     @NotNull(message = "El id de clase es requerido")
-    private Long idClase;
+    private Long idClasse;
 
     @NotNull(message = "El id de entrenador es requerido")
-    private Long idEntrenador;
+    private Long idCoach;
 
     @NotBlank(message = "La fecha de reserva no puede estar vacía")
-    private String fechaReserva;
+    private String reservationDate;
 
     @NotBlank(message = "El estado de reserva no puede estar vacío")
-    private String estadoReserva;
+    private String reservationStatus;
 }

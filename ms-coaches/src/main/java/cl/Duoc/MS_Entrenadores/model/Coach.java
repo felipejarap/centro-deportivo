@@ -12,31 +12,31 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Entrenador {
+public class Coach {
 //agregar la comunicacion de id_usuario y rol cuando haga la comunicacion de microservicios
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Entrenador")
-    private Long idEntrenador;
+    @Column(name = "id_coach")
+    private Long idCoach;
 
 
-    @Column(name= "nombre",nullable = false)
-    private String nombre;
+    @Column(name= "name",nullable = false)
+    private String name;
 
     @NotBlank(message = "El apellido no debe estar en blanco")
-    @Column(name= "appaterno",nullable = false)
-    private String appaterno;
+    @Column(name= "paternal_surname",nullable = false)
+    private String paternalSurname;
 
-    @Column(name= "apmaterno")
-    private String apmaterno;
+    @Column(name= "maternal_surname")
+    private String maternalSurname;
 
     @NotBlank(message = "La especialidad no debe estar en blanco")
-    @Column(name= "especialidad",nullable = false)
-    private String especialidad;
+    @Column(name= "specialty",nullable = false)
+    private String specialty;
 
     @NotBlank(message = "La certificacion no debe estar en blanco")
-    @Column(name= "certificacion",nullable = false)
-    private String certificacion;
+    @Column(name= "certification",nullable = false)
+    private String certification;
 
 
 

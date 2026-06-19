@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cl.Duoc</groupId>
-	<artifactId>MS-Entrenadores</artifactId>
+	<artifactId>ms-coaches</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>

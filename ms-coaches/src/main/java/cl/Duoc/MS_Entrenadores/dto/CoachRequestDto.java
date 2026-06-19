@@ -12,24 +12,24 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EntrenadorRequestDto {
+public class CoachRequestDto {
 
 
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Size(min = 4,max = 20, message = "El nombre debe tener entre 4 y 20 caracteres")
-    private String nombre;
+    private String name;
 
     @NotBlank(message = "El apellido no debe estar en blanco")
-    private String appaterno;
+    private String paternalSurname;
 
 
-    private String apmaterno;
+    private String maternalSurname;
 
     @NotBlank(message = "La especialidad no debe estar ne blanco")
-    private String especialidad;
+    private String specialty;
 
     @NotBlank(message = "La certificacion no debe estar en blanco")
-    private String certificacion;
+    private String certification;
 
 
 }

@@ -1,0 +1,90 @@
+spring:
+  application:
+    name: ms-apigateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: ms-auth
+              uri: lb://ms-auth
+              predicates:
+                - Path=/api/v1/auth/**
+
+            - id: ms-users
+              uri: lb://ms-users
+              predicates:
+                - Path=/api/v1/users/**
+
+            - id: ms-type-users
+              uri: lb://ms-users
+              predicates:
+                - Path=/api/v1/type-users/**
+
+            - id: ms-classes
+              uri: lb://ms-classes
+              predicates:
+                - Path=/api/v1/classes/**
+
+            - id: ms-type-classes
+              uri: lb://ms-classes
+              predicates:
+                - Path=/api/v1/type-classes/**
+
+            - id: ms-plans
+              uri: lb://ms-plans
+              predicates:
+                - Path=/api/v1/plans/**
+
+            - id: ms-notification
+              uri: lb://ms-notification
+              predicates:
+                - Path=/api/v1/notifications/**
+
+            - id: ms-coaches
+              uri: lb://ms-coaches
+              predicates:
+                - Path=/api/v1/coaches/**
+
+            - id: ms-subscription
+              uri: lb://ms-subscription
+              predicates:
+                - Path=/api/v1/subscription/**
+
+            - id: ms-medical-record
+              uri: lb://ms-medicalRecord
+              predicates:
+                - Path=/api/v1/medical-records/**
+
+            - id: ms-reservations
+              uri: lb://ms-reservation
+              predicates:
+                - Path=/api/v1/reservations/**
+
+            - id: ms-assistance
+              uri: lb://ms.asistencia
+              predicates:
+                - Path=/api/v1/assistances/**
+
+            - id: ms-exercise-routine
+              uri: lb://ms-exerciseRoutine
+              predicates:
+                - Path=/api/v1/routines/**
+
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: clave-super-secreta-debe-tener-256-bits-minimo!!
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    cl.duoc.ms_apiGateway: DEBUG

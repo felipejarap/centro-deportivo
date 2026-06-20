@@ -15,8 +15,8 @@ public class UsuarioResponseDto {
     @JsonProperty("id")
     private Long idUser;
     private String username;
-    private String appaterno;
-    private String apmaterno;
+    private String paternalSurname;
+    private String maternalSurname;
     private String email;
     private String phone;
     private TypeUserResponseDto typeUser;

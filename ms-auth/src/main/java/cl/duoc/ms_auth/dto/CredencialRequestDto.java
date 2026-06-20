@@ -2,6 +2,7 @@ package cl.duoc.ms_auth.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class CredencialRequestDto {
     private String username;
 
     @NotBlank(message = "El password no puede estar vacío")
+    @Size(min = 6, message ="El password debe tener un minimo de 6 caracteres")
     private String password;
 
     @NotNull(message = "El id de usuario es requerido")

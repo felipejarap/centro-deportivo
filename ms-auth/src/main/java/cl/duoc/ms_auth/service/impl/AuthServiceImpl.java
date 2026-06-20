@@ -4,6 +4,8 @@ import cl.duoc.ms_auth.dto.AuthRequestDto;
 import cl.duoc.ms_auth.dto.AuthResponseDto;
 import cl.duoc.ms_auth.dto.CredencialRequestDto;
 import cl.duoc.ms_auth.dto.CredencialResponseDto;
+import cl.duoc.ms_auth.exception.UserNotFoundException;
+import cl.duoc.ms_auth.exception.UsernameAlreadyExistsException;
 import cl.duoc.ms_auth.model.Credencial;
 import cl.duoc.ms_auth.reporsitory.CredencialRepository;
 import cl.duoc.ms_auth.security.JwtUtil;
@@ -11,6 +13,7 @@ import cl.duoc.ms_auth.service.AuthService;
 import cl.duoc.ms_auth.service.api.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -81,7 +84,13 @@ public class AuthServiceImpl implements AuthService {
             usuarioClient.findById(request.getIdUser());
         } catch (Exception e) {
             log.warn("Usuario {} no encontrado en ms-usuarios", request.getIdUser());
-            return null;
+            throw new UsernameNotFoundException(
+                    "El usuario con id" + request.getIdUser() + " no existe");
+        }
+        if (repository.findByUsername(request.getUsername()).isPresent()) {
+            log.warn("Username ya registrado:{}",request.getUsername());
+            throw new UsernameAlreadyExistsException(
+                    "El username '" + request.getUsername() + "' ya está en uso");
         }
 
         Credencial credencial = new Credencial();

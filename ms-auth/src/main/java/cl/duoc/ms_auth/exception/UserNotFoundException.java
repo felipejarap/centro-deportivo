@@ -1,0 +1,8 @@
+
+package cl.duoc.ms_auth.exception;
+
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(String message) {
+        super(message);
+    }
+}

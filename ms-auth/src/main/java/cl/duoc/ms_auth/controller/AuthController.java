@@ -41,6 +41,7 @@ public class AuthController {
 
     @GetMapping("/credenciales")
     public ResponseEntity<List<CredencialResponseDto>> findAll() {
+
         return ResponseEntity.ok(service.findAll());
     }
 

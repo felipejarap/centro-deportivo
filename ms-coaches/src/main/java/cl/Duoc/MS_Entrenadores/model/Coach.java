@@ -1,5 +1,6 @@
 package cl.Duoc.MS_Entrenadores.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Coach {
 //agregar la comunicacion de id_usuario y rol cuando haga la comunicacion de microservicios
     @Id

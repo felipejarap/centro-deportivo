@@ -1,6 +1,7 @@
 package duoc.cl.ms_notification.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

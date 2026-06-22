@@ -1,10 +1,13 @@
 package cl.duoc.ms_rutinaEjercicio.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -41,7 +44,8 @@ public class ExerciseRoutine {
     private Double personalBrand;
 
     @Column(name = "assignment_date", nullable = false)
-    private String assignmentDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime assignmentDate;
 
     @Column(name = "active", nullable = false)
     private Boolean active;

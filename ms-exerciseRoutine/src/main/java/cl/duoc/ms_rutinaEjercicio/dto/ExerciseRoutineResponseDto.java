@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,7 +33,7 @@ public class ExerciseRoutineResponseDto {
     @Schema(description = "Récord o marca personal actual del alumno en su ejercicio principal (en kg)", example = "100.0")
     private Double personalBrand;
     @Schema(description = "Fecha en la que se le entregó la rutina al alumno", example = "2026-06-19")
-    private String assignmentDate;
+    private LocalDateTime assignmentDate;
     @Schema(description = "Estado de vigencia de la rutina (true = En uso / false = Archivada)", example = "true")
     private Boolean active;
 

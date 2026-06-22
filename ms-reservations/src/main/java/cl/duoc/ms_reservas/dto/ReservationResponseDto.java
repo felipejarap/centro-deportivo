@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class ReservationResponseDto {
     @Schema(description = "Identificador único del entrenador asignado", example = "2")
     private Long idCoach;
     @Schema(description = "Fecha confirmada para la reserva (Formato YYYY-MM-DD)", example = "2026-06-25")
-    private String reservationDate;
+    private LocalDateTime reservationDate;
     @Schema(description = "Estado actual de la reserva en el sistema", example = "CONFIRMADA")
     private String reservationStatus;
 

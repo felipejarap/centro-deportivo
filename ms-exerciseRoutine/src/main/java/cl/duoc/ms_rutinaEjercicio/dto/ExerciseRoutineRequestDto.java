@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -38,7 +40,7 @@ public class ExerciseRoutineRequestDto {
     private Double personalBrand;
     @NotBlank(message = "La fecha de asignación no puede estar vacía")
     @Schema(description = "Fecha en la que se le entrega la rutina al alumno (Formato ISO o texto)", example = "2026-06-19")
-    private String assignmentDate;
+    private LocalDateTime assignmentDate;
     @NotNull(message = "El campo activa es requerido")
     @Schema(description = "Estado de vigencia de la rutina (true = En uso / false = Archivada)", example = "true")
     private Boolean active;

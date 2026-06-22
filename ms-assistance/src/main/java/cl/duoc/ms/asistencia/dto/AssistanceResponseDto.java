@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,7 +23,7 @@ public class AssistanceResponseDto {
     @Schema(description = "Identificador único de la clase deportiva", example = "12")
     private Long idClasse;
     @Schema(description = "Hora de marcaje e ingreso validada por el sistema", example = "09:05")
-    private String arrivalTime;
+    private LocalDateTime arrivalTime;
     @Schema(description = "Confirmación final de asistencia (true = Presente / false = Ausente)", example = "true")
     private Boolean assist;
 

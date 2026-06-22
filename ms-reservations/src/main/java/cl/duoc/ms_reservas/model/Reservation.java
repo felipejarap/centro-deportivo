@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -27,7 +29,7 @@ public class Reservation {
     private Long idCoach;
 
     @Column(name = "reservation_date", nullable = false)
-    private String reservationDate;
+    private LocalDateTime reservationDate;
 
     @Column(name = "reservation_status", nullable = false)
     private String reservationStatus;

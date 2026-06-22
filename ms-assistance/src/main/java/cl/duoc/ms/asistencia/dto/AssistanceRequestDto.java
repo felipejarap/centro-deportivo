@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,7 +25,7 @@ public class AssistanceRequestDto {
     private Long idClasse;
     @NotBlank(message = "La hora de llegada no puede estar vacía")
     @Schema(description = "Hora exacta del marcaje de ingreso en formato de 24 horas", example = "09:05")
-    private String arrivalTime;
+    private LocalDateTime arrivalTime;
     @NotNull(message = "El campo asistio es requerido")
     @Schema(description = "Estado de confirmación física (true = Presente / false = Ausente)", example = "true")
     private Boolean assist;

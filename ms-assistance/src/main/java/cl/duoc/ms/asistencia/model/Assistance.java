@@ -1,11 +1,14 @@
 package cl.duoc.ms.asistencia.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,7 +29,8 @@ public class Assistance {
     private Long idClasse;
 
     @Column(name = "arrival_time", nullable = false)
-    private String arrivalTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime arrivalTime;
 
     @Column(name = "assist", nullable = false)
     private Boolean assist;

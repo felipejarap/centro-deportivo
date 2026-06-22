@@ -1,0 +1,12 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: clave-super-secreta-debe-tener-256-bits-minimo!!
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    cl.duoc.ms_apiGateway: DEBUG

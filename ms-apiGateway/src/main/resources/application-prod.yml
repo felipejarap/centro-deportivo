@@ -1,0 +1,13 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://eureka-server:8761/eureka/}
+
+jwt:
+  secret: ${JWT_SECRET}
+
+logging:
+  level:
+    root: WARN
+    org.springframework.cloud.gateway: WARN
+    cl.duoc.ms_apiGateway: INFO

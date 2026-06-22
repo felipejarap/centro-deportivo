@@ -1,6 +1,8 @@
 spring:
   application:
     name: ms-apigateway
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
   cloud:
     gateway:
       server:
@@ -75,16 +77,5 @@ server:
   port: 8090
 
 eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
-
-jwt:
-  secret: clave-super-secreta-debe-tener-256-bits-minimo!!
-
-logging:
-  level:
-    org.springframework.cloud.gateway: INFO
-    cl.duoc.ms_apiGateway: DEBUG

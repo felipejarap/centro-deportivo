@@ -7,7 +7,7 @@ CREATE TABLE exercise_routine (
     objective         VARCHAR(50)  NOT NULL,
     recorded_weight  DOUBLE,
     personal_brand   DOUBLE,
-    assignment_date LocalDateTime NOT NULL,
+    assignment_date DATETIME NOT NULL,
     active          BOOLEAN      NOT NULL DEFAULT TRUE
 );
 

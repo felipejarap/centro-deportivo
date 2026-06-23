@@ -45,6 +45,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
       JWT_SECRET: clave-super-secreta-debe-tener-256-bits-minimo!!
+      JWT_EXPIRATION: 86400000
     depends_on:
       mysql:
         condition: service_healthy

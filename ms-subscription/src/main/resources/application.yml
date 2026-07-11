@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ms-subscription
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+server:
+  port: 8086
+eureka:
+  instance:
+    prefer-ip-address: true
+springdoc:
+  swagger-ui:
+    path: /api-docs
+    operationsSorter: method
+    tagsSorter: alpha
+    defaultModelsExpandDepth: -1

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ms-auth
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+server:
+  port: 8080
+eureka:
+  instance:
+    prefer-ip-address: true
+jwt:
+  expiration: ${JWT_EXPIRATION:3600000}

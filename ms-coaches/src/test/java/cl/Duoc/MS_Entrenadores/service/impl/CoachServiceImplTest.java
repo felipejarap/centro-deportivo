@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+// Habilita el entorno de pruebas unitarias puras con Mockito en JUnit 5
 @ExtendWith(MockitoExtension.class)
 class CoachServiceImplTest {
 
@@ -32,7 +34,7 @@ class CoachServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        // Inicializamos los datos del entrenador para la Ciudad Deportiva
+        // Inicializamos los datos del entrenador ficticio
         coachEntity = new Coach();
         coachEntity.setIdCoach(1L);
         coachEntity.setName("Marcelo");
@@ -49,9 +51,14 @@ class CoachServiceImplTest {
         requestDto.setCertification("Licencia PRO CONMEBOL");
     }
 
-    // ==========================================
-    // PRUEBAS: findAll()
-    // ==========================================
+    // =========================================================================
+    // PRUEBAS: METODO findAll()
+    // =========================================================================
+
+    /**
+     * BUSCAR TODOS - CASO CON REGISTROS: Valida que al recuperar entrenadores se recorra el stream,
+     * se ejecute el mapeo de campos de 'toDto()' y devuelva la lista correctamente.
+     */
     @Test
     void givenExistingCoaches_whenFindAll_thenReturnList() {
         // GIVEN
@@ -63,13 +70,37 @@ class CoachServiceImplTest {
         // THEN
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals("Marcelo", result.get(0).getName());
+        assertEquals(1L, result.getFirst().getIdCoach());
+        assertEquals("Marcelo", result.getFirst().getName());
         verify(repository, times(1)).findAll();
     }
 
-    // ==========================================
-    // PRUEBAS: findById()
-    // ==========================================
+    /**
+     * BUSCAR TODOS - CASO VACÍO: Garantiza la cobertura del stream cuando la lista local
+     * viene sin elementos.
+     */
+    @Test
+    void givenNoCoaches_whenFindAll_thenReturnEmptyList() {
+        // GIVEN
+        when(repository.findAll()).thenReturn(Collections.emptyList());
+
+        // WHEN
+        List<CoachResponseDto> result = service.findAll();
+
+        // THEN
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+        verify(repository, times(1)).findAll();
+    }
+
+    // =========================================================================
+    // PRUEBAS: METODO findById()
+    // =========================================================================
+
+    /**
+     * BUSCAR POR ID EXISTENTE: Valida la ruta del '.map(this::toDto)' extrayendo todos los
+     * campos del entrenador mapeados del objeto de persistencia.
+     */
     @Test
     void givenExistingId_whenFindById_thenReturnDto() {
         // GIVEN
@@ -82,9 +113,15 @@ class CoachServiceImplTest {
         assertNotNull(result);
         assertEquals(1L, result.getIdCoach());
         assertEquals("Futbol", result.getSpecialty());
+        assertEquals("Bielsa", result.getPaternalSurname());
+        assertEquals("Caldera", result.getMaternalSurname());
+        assertEquals("Licencia PRO CONMEBOL", result.getCertification());
         verify(repository, times(1)).findById(1L);
     }
 
+    /**
+     * BUSCAR POR ID INEXISTENTE: Garantiza la cobertura de la bifurcación '.orElse(null)' del Optional.
+     */
     @Test
     void givenNonExistingId_whenFindById_thenReturnNull() {
         // GIVEN
@@ -98,9 +135,14 @@ class CoachServiceImplTest {
         verify(repository, times(1)).findById(99L);
     }
 
-    // ==========================================
-    // PRUEBAS: create()
-    // ==========================================
+    // =========================================================================
+    // PRUEBAS: METODO create()
+    // =========================================================================
+
+    /**
+     * CREAR ENTRENADOR: Cubre por completo las asignaciones internas del método privado 'toEntity()'
+     * al procesar el DTO de entrada previo al guardado.
+     */
     @Test
     void givenValidRequest_whenCreate_thenReturnCreatedDto() {
         // GIVEN
@@ -112,13 +154,18 @@ class CoachServiceImplTest {
         // THEN
         assertNotNull(result);
         assertEquals(1L, result.getIdCoach());
-        assertEquals("Licencia PRO CONMEBOL", result.getCertification());
+        assertEquals("Marcelo", result.getName());
         verify(repository, times(1)).save(any(Coach.class));
     }
 
-    // ==========================================
-    // PRUEBAS: update()
-    // ==========================================
+    // =========================================================================
+    // PRUEBAS: METODO update()
+    // =========================================================================
+
+    /**
+     * ACTUALIZAR ID EXISTENTE: Cubre el bloque 'if (repository.existsById(id))' ejecutando la reasignación
+     * explícita del ID sobre el objeto antes de guardarlo en base de datos.
+     */
     @Test
     void givenExistingIdAndValidRequest_whenUpdate_thenReturnUpdatedDto() {
         // GIVEN
@@ -135,6 +182,10 @@ class CoachServiceImplTest {
         verify(repository, times(1)).save(any(Coach.class));
     }
 
+    /**
+     * ACTUALIZAR ID INEXISTENTE: Cubre el retorno de la rama 'else' implícita del bloque condicional,
+     * regresando un valor nulo controlado.
+     */
     @Test
     void givenNonExistingId_whenUpdate_thenReturnNull() {
         // GIVEN
@@ -149,9 +200,14 @@ class CoachServiceImplTest {
         verify(repository, never()).save(any(Coach.class));
     }
 
-    // ==========================================
-    // PRUEBAS: delete()
-    // ==========================================
+    // =========================================================================
+    // PRUEBAS: METODO delete()
+    // =========================================================================
+
+    /**
+     * ELIMINAR ID EXISTENTE: Cubre la bifurcación positiva del borrado, garantizando que el retorno
+     * sea 'true' tras invocar la sentencia en el repositorio.
+     */
     @Test
     void givenExistingId_whenDelete_thenReturnTrue() {
         // GIVEN
@@ -167,6 +223,10 @@ class CoachServiceImplTest {
         verify(repository, times(1)).deleteById(1L);
     }
 
+    /**
+     * ELIMINAR ID INEXISTENTE: Cubre la bifurcación alternativa del condicional retornando false
+     * y anulando llamadas de ejecución hacia el repositorio de datos.
+     */
     @Test
     void givenNonExistingId_whenDelete_thenReturnFalse() {
         // GIVEN

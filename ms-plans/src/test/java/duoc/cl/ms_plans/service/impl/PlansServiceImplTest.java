@@ -51,7 +51,7 @@ class PlansServiceImplTest {
         // THEN
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals("Plan Mensual Full", result.get(0).getName());
+        assertEquals("Plan Mensual Full", result.getFirst().getName());
         verify(repository, times(1)).findAll();
     }
 

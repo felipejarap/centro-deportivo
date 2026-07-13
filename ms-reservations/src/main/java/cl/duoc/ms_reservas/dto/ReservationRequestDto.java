@@ -30,7 +30,7 @@ public class ReservationRequestDto {
     @Schema(description = "Identificador único del entrenador asignado (Proveniente de MS_Entrenadores)", example = "2")
     private Long idCoach;
 
-    @NotBlank(message = "La fecha de reserva no puede estar vacía")
+    @NotNull(message = "La fecha de reserva no puede estar vacía")
     @Schema(description = "Fecha programada para asistir a la sesión deportiva (Formato YYYY-MM-DD)", example = "2026-06-25")
     private LocalDateTime reservationDate;
 
